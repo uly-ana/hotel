@@ -3,7 +3,7 @@ import items from './data'
 
 const RoomContext = React.createContext();
 
-export default class RoomProvider extends Component {
+class RoomProvider extends Component {
     state = {
         rooms: [],
         sortedRooms: [],
@@ -13,14 +13,17 @@ export default class RoomProvider extends Component {
 
     componentDidMount(){
         let rooms = this.formatData(items);
-        let featuredRooms = rooms.filter(room => room.featured === true);
-        this.setState({
-            rooms, 
-            featuredRooms, 
-            sortedRooms: rooms, 
-            loading: false
-        });
     }
+
+    //     formatData(items){
+    //     let featuredRooms = items.filter((room) => room.featured === true);
+    //     this.setState({
+    //       rooms,
+    //       featuredRooms,
+    //       sortedRooms: rooms,
+    //       loading: false,
+    //     });
+    // }
 
     formatData(items) {
         let tempItems = items.map(item => {
@@ -29,6 +32,7 @@ export default class RoomProvider extends Component {
             let room = {...item.fields, images, id};
             return room;
         });
+        return tempItems;
     }
 
     render() {
@@ -42,4 +46,4 @@ export default class RoomProvider extends Component {
 
 const RoomConsumer = RoomContext.Consumer;
 
-export {RoomProvider,RoomConsumer, RoomContext};
+export {RoomProvider, RoomConsumer, RoomContext};
