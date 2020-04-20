@@ -5,7 +5,7 @@ const RoomContext = React.createContext();
 
 class RoomProvider extends Component {
     state = {
-        rooms: [],
+        rooms:[],
         sortedRooms: [],
         featuredRooms: [],
         loading: true 
@@ -13,23 +13,21 @@ class RoomProvider extends Component {
 
     componentDidMount(){
         let rooms = this.formatData(items);
+        let featuredRooms = rooms.filter(room => room.featured === true);
+        this.setState({
+            rooms: rooms,
+            featuredRooms: featuredRooms,
+            sortedRooms: rooms,
+            loading: false
+        })
     }
 
-    //     formatData(items){
-    //     let featuredRooms = items.filter((room) => room.featured === true);
-    //     this.setState({
-    //       rooms,
-    //       featuredRooms,
-    //       sortedRooms: rooms,
-    //       loading: false,
-    //     });
-    // }
-
-    formatData(items) {
-        let tempItems = items.map(item => {
+    formatData(items){
+        let tempItems = items.map(item =>{
             let id = item.sys.id
             let images = item.fields.images.map(image => image.fields.file.url);
-            let room = {...item.fields, images, id};
+
+            let room = {...item.fields, images:images, id};
             return room;
         });
         return tempItems;
@@ -37,10 +35,10 @@ class RoomProvider extends Component {
 
     render() {
         return (
-            <RoomContext.Provider value={{...this.state}}>
+            <RoomContext.Provider value={{...this.state }}>
                 {this.props.children}
             </RoomContext.Provider>
-        )
+        );
     }
 }
 
