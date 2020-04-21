@@ -5,17 +5,16 @@ import {withRoomConsumer} from '../context'
 import Loading from './Loading'
 
 function RoomContainer({context}){
- const{loading, sortedRooms, rooms } = context;
- if (loading) {
-                    return <Loading/>;
-                } 
-                  return (
-                      <div>
-                        <h1> hello from rooms container</h1>
-                        <RoomFilter rooms={rooms}/>
-                        <RoomList rooms={sortedRooms}/>
-                      </div>
-                  )}
+    const{loading, sortedRooms, rooms } = context;
+        if (loading) {
+            return <Loading/>;
+        } 
+            return (
+                <>
+                    <RoomFilter rooms={rooms}/>
+                    <RoomList rooms={sortedRooms}/>
+                </>
+            )}
 
 export default withRoomConsumer(RoomContainer)
 
