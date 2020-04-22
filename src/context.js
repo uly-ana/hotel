@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import items from './data'
-
 const RoomContext = React.createContext();
 
 class RoomProvider extends Component {
@@ -57,7 +56,7 @@ class RoomProvider extends Component {
 
     handleChange = event => {
         const target = event.target
-        const value = event.type === 'checkbox' ? target.checked : target.value
+        const value = target.type === 'checkbox' ? target.checked : target.value
         const name  = event.target.name
         this.setState({
             [name]: value
@@ -94,7 +93,18 @@ class RoomProvider extends Component {
     // filter by size
     tempRooms = tempRooms.filter((room) => room.size >= minSize && room.size <=maxSize);
 
-    // filter by size
+    // end filter by size
+
+    // extras
+    if (breakfast){
+        tempRooms = tempRooms.filter(room => room.breakfast === true)
+    }
+    if (pets) {
+      tempRooms = tempRooms.filter((room) => room.pets === true);
+    }
+
+    // end of extras
+   
 
 
     this.setState({
