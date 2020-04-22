@@ -40,37 +40,45 @@ export default function RoomFilter({rooms}) {
     });
 
     return (
-      <section className="filter-container">
+    <section className="filter-container">
         <Title title="search rooms" />
         <form className="filter-form">
           {/* select type */}
-          <div className="form-group">
+        <div className="form-group">
             <label htmlFor="type">room type</label>
-            <select
-              name="type"
-              id="type"
-              value={type}
-              className="form-control"
-              onChange={handleChange}
-            >
-              {types}
-            </select>
-          </div>
-          {/* end select type */}
-          {/* select capacity */}
-          <div className="form-group">
-            <label htmlFor="capacity">Guests</label>
-            <select
-              name="capacity"
-              id="capacity"
-              value={capacity}
-              className="form-control"
-              onChange={handleChange}
-            >
-              {people}
-            </select>
-          </div>
+    <select
+        name="type"
+        id="type"
+        value={type}
+        className="form-control"
+        onChange={handleChange}>
+            {types}
+    </select>
+        </div>
+    {/* end select type */}
+    {/* select capacity */}
+    <div className="form-group">
+        <label htmlFor="capacity">Guests</label>
+    <select
+        name="capacity"
+        id="capacity"
+        value={capacity}
+        className="form-control"
+        onChange={handleChange}>
+        {people}
+    </select>
+    </div>
           {/* end of capacity */}
+          {/* room price */}
+    <div className="form-group">
+    <label htmlFor="price">room price ${price}</label>
+    <input type="range" name="price" min={minPrice} max={maxPrice} id="price" value={price} onChange={handleChange} className="form-control"></input>
+
+    </div>
+
+
+
+          {/* end room price */}
         </form>
       </section>
     );
