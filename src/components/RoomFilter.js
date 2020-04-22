@@ -35,9 +35,9 @@ export default function RoomFilter({rooms}) {
     let people = getUnique(rooms, 'capacity');
     people = people.map((item, index) => {
         return (
-        <optin key={index} value={item}>{item}</optin>
+        <option key={index} value={item}>{item}</option>
         )
-    })
+    });
 
     return (
       <section className="filter-container">
@@ -59,7 +59,7 @@ export default function RoomFilter({rooms}) {
           {/* end select type */}
           {/* select capacity */}
           <div className="form-group">
-            <label htmlFor="capacity">Guest</label>
+            <label htmlFor="capacity">Guests</label>
             <select
               name="capacity"
               id="capacity"
